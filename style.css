@@ -1,0 +1,124 @@
+:root{--bg:#e3e5e2;--sf:#f4f5f3;--dk:#2a2f2e;--ink:#1f2423;--mute:#5f6965;--line:#c8cdc8;--gr:#4a771c;--gl:#a8c95c;--warn:#a3342a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,.logo{font-family:Georgia,"Times New Roman",serif;margin:0;letter-spacing:-.01em}
+/* кнопки: плавная реакция, без задержки и случайного зума при касании */
+button{font:inherit;cursor:pointer;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  transition:background-color .15s,border-color .15s,box-shadow .15s,transform .12s}
+:focus-visible{outline:3px solid var(--gr);outline-offset:2px}
+.hdr :focus-visible,.brand :focus-visible{outline-color:var(--gl)}
+[hidden]{display:none!important}
+.btn{font-weight:600;border:1px solid var(--gr);border-radius:6px;padding:10px 16px;background:var(--gr);color:#fff}
+.btn:disabled{opacity:.55;cursor:default}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--mute)}
+.btn.full{width:100%;margin-top:20px}
+/* вход */
+.auth{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.brand{position:relative;background:var(--dk);color:#e8ebe6;display:flex;flex-direction:column;justify-content:center;gap:14px;padding:48px}
+.brand svg{width:96px;height:96px}
+.brand h1{font-size:3rem;letter-spacing:.14em}
+.brand p{margin:0;max-width:30ch;color:#b9c1bb}
+.brand .soundtoggle{position:absolute;top:16px;right:16px}
+.panel{display:grid;place-items:center;padding:32px}
+.card{width:100%;max-width:380px}
+.card h2{font-size:1.8rem}
+.sub{margin:4px 0 18px;color:var(--mute)}
+label{display:block;font-weight:600;font-size:.9rem;margin:14px 0 4px}
+input{width:100%;font:inherit;color:inherit;background:var(--sf);border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.msg{min-height:1.4em;margin:12px 0 0;font-size:.9rem}
+.msg.err{color:var(--warn)}.msg.ok{color:var(--gr)}
+.switch{margin:14px 0 0;text-align:center;color:var(--mute);font-size:.92rem}
+.switch button{background:none;border:0;padding:0;color:var(--gr);font-weight:600;text-decoration:underline}
+.note{margin:18px 0 0;text-align:center;color:var(--mute);font-size:.82rem}
+/* шапка */
+.hdr{position:sticky;top:0;z-index:5;background:var(--dk);color:#e8ebe6;display:flex;align-items:center;gap:12px;padding:10px 20px}
+.logo{display:flex;align-items:center;gap:10px;margin-right:auto;font-size:1.4rem;letter-spacing:.14em}
+.logo svg{width:34px;height:34px}
+.iconbtn{background:transparent;color:inherit;border:1px solid #566060;border-radius:6px;padding:7px 12px}
+.hdr .iconbtn{flex:none;white-space:nowrap}
+.iconbtn.soundtoggle{padding:7px 9px;line-height:0}
+.iconbtn.soundtoggle svg{width:20px;height:20px;display:block;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.soundtoggle .x{display:none}
+.soundtoggle.off .w{display:none}
+.soundtoggle.off .x{display:inline}
+.badge{display:inline-block;min-width:22px;padding:0 6px;border-radius:11px;background:var(--gl);color:#1f2a10;font-weight:700;font-size:.85rem;text-align:center}
+.ava{width:40px;height:40px;padding:0;border-radius:50%;border:2px solid var(--gl);background:var(--gr);color:#fff;font:700 1.1rem Georgia,serif;overflow:hidden;flex:none}
+.ava img{width:100%;height:100%;object-fit:cover;display:block}
+.ava.big{width:72px;height:72px;font-size:1.8rem}
+/* страница */
+main{max-width:1040px;margin:0 auto;padding:24px 20px 60px}
+.hero{display:flex;align-items:center;gap:18px;margin-bottom:26px;flex-wrap:wrap}
+.hero h1{font-size:1.8rem}
+.hero p{margin:2px 0 0;color:var(--mute)}
+.hero .btn{margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.prod{background:var(--sf);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.pic{background:#cdd3ca;display:grid;place-items:center;padding:18px}
+.pic svg{width:84px;height:84px}
+.pbody{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pbody h2{font-size:1.15rem}
+.pbody p{margin:0;color:var(--mute);font-size:.92rem;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px}
+.price{font-weight:700}
+.step{display:inline-flex;align-items:center;gap:8px}
+.step button{width:32px;height:32px;border-radius:6px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.step b{min-width:46px;text-align:center}
+/* корзина */
+.scrim{position:fixed;inset:0;z-index:9;background:rgba(20,24,23,.45);opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s}
+.scrim.open{opacity:1;visibility:visible}
+.cart{position:fixed;top:0;right:0;bottom:0;z-index:10;width:min(400px,100%);background:var(--sf);display:flex;flex-direction:column;transform:translateX(100%);visibility:hidden;transition:transform .2s,visibility .2s}
+.cart.open{transform:none;visibility:visible}
+.cart-top{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.cart-top .iconbtn{color:var(--ink);border-color:var(--line)}
+.cart ul{list-style:none;margin:0;padding:0 20px;flex:1;overflow-y:auto}
+.cart li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}
+.cart small{color:var(--mute)}
+.empty{margin:20px;color:var(--mute)}
+.cart-foot{padding:16px 20px;border-top:1px solid var(--line)}
+.sum{display:flex;justify-content:space-between;font-size:1.15rem}
+.cart-foot .btn.full{margin-top:12px}
+.toast{position:fixed;left:50%;bottom:24px;z-index:20;transform:translate(-50%,20px);background:var(--dk);color:#fff;padding:10px 18px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Реакция на наведение (только там, где есть мышь) ---------- */
+@media (hover:hover){
+  .btn:not(:disabled):hover{background:#3d6316;transform:translateY(-1px);box-shadow:0 4px 12px rgba(74,119,28,.35)}
+  .btn.ghost:not(:disabled):hover{background:#d6dad5;box-shadow:0 4px 12px rgba(31,36,35,.14)}
+  .iconbtn:hover{background:#3a4140;border-color:var(--gl)}
+  .cart-top .iconbtn:hover{background:#e6e9e4;border-color:var(--mute)}
+  .step button:hover{background:#e6ecd8;border-color:var(--gr)}
+  .ava:hover{transform:scale(1.07);box-shadow:0 0 0 4px rgba(168,201,92,.35)}
+  .switch button:hover{color:#3d6316}
+}
+/* ---------- Реакция на нажатие и касание (мышь и палец) ---------- */
+.btn:not(:disabled):active{background:#335210;transform:scale(.97);box-shadow:none}
+.btn.ghost:not(:disabled):active{background:#c8cdc8}
+.iconbtn:active{background:#475050;transform:scale(.95)}
+.cart-top .iconbtn:active{background:#d6dad5}
+.step button:active{background:#d3e0b4;transform:scale(.9)}
+.ava:active{transform:scale(.94)}
+.switch button:active{opacity:.65}
+/* волна от места касания (создаётся в app.js) */
+.ripple{position:absolute;border-radius:50%;pointer-events:none;background:currentColor;opacity:.3;transform:scale(0);animation:ripple .55s ease-out forwards}
+@keyframes ripple{to{transform:scale(1);opacity:0}}
+
+@media (pointer:coarse){ /* на телефоне кнопки покрупнее, чтобы удобно попадать пальцем */
+  .step button{width:40px;height:40px}
+  .iconbtn{padding:10px 14px}
+  .iconbtn.soundtoggle{padding:10px 11px}
+}
+@media (max-width:760px){.auth{grid-template-columns:1fr}.brand{padding:28px}.brand svg{width:56px;height:56px}.brand h1{font-size:2rem}}
+@media (max-width:480px){ /* чтобы шапка с кнопками помещалась в узкий экран */
+  .hdr{padding:8px 12px;gap:8px}
+  .logo{gap:0}
+  .logo svg{width:30px;height:30px}
+  .wm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .iconbtn{padding:8px 9px}
+  .iconbtn.soundtoggle{padding:10px 9px}
+}
+@media (max-width:340px){.hdr .ava{display:none}} /* то же фото есть крупнее под шапкой */
+@media (prefers-reduced-motion:reduce){
+  .cart,.scrim,.toast,button{transition:none}
+  .ripple{display:none}
+  .btn:hover,.btn:active,.ava:hover,.ava:active,.iconbtn:active,.step button:active{transform:none}
+}

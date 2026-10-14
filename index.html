@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WERITI — зелёный виноград</title>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="style.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+<script defer src="sound.js"></script>
+<script defer src="app.js"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<radialGradient id="g" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#f1f8cf"/><stop offset=".55" stop-color="#a8c95c"/><stop offset="1" stop-color="#5f8a2b"/></radialGradient>
+<symbol id="grapes" viewBox="0 0 64 64"><g fill="url(#g)"><circle cx="20" cy="18" r="9"/><circle cx="38" cy="18" r="9"/><circle cx="12" cy="33" r="9"/><circle cx="29" cy="33" r="9"/><circle cx="46" cy="33" r="9"/><circle cx="21" cy="48" r="9"/><circle cx="38" cy="48" r="9"/><circle cx="30" cy="59" r="5"/></g><path d="M30 12c0-6 4-9 10-10" stroke="#4a6b22" stroke-width="3" fill="none" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<section id="auth" class="auth" hidden>
+  <div class="brand">
+    <button class="iconbtn soundtoggle" type="button" aria-pressed="true" aria-label="Звук" title="Звук включён">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="x" d="M17 9l5 6M22 9l-5 6"/></svg>
+    </button>
+    <svg aria-hidden="true"><use href="#grapes"/></svg>
+    <h1>WERITI</h1>
+    <p>Свежий зелёный виноград. Войдите, чтобы выбрать сорт и собрать корзину.</p>
+  </div>
+  <div class="panel">
+    <div class="card">
+      <h2 id="authTitle">Вход</h2>
+      <p class="sub" id="authSub">Введите логин и пароль.</p>
+      <form id="authForm">
+        <label for="login">Логин</label>
+        <input id="login" autocomplete="username" required minlength="3" maxlength="32">
+        <label for="pass">Пароль</label>
+        <input id="pass" type="password" autocomplete="current-password" required minlength="6">
+        <button class="btn full" id="authBtn" type="submit" data-nosound disabled>Загрузка…</button>
+        <p class="msg" id="authMsg" role="status"></p>
+      </form>
+      <p class="switch"><span id="switchText">Нет аккаунта?</span> <button type="button" id="switchBtn">Зарегистрироваться</button></p>
+      <p class="note">Данные хранятся только в этом браузере и зашифрованы вашим паролем.</p>
+    </div>
+  </div>
+</section>
+
+<div id="shop" hidden>
+  <header class="hdr">
+    <span class="logo"><svg aria-hidden="true"><use href="#grapes"/></svg><span class="wm">WERITI</span></span>
+    <button class="iconbtn" id="cartBtn" type="button">Корзина <span class="badge" id="count">0</span></button>
+    <button class="iconbtn soundtoggle" type="button" aria-pressed="true" aria-label="Звук" title="Звук включён">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="w" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="x" d="M17 9l5 6M22 9l-5 6"/></svg>
+    </button>
+    <button class="ava" type="button" title="Сменить фото" aria-label="Сменить фото профиля"></button>
+    <button class="iconbtn" id="logout" type="button">Выйти</button>
+  </header>
+  <main>
+    <div class="hero">
+      <button class="ava big" type="button" title="Сменить фото" aria-label="Сменить фото профиля"></button>
+      <div>
+        <h1 id="hello"></h1>
+        <p>Выберите сорт и добавьте его в корзину.</p>
+      </div>
+      <button class="btn ghost" id="photoBtn" type="button">Сменить фото</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="cart" id="cart" aria-label="Корзина">
+  <div class="cart-top"><h2>Корзина</h2><button class="iconbtn" id="closeCart" type="button">Закрыть</button></div>
+  <p class="empty" id="empty">В корзине пока пусто. Добавьте виноград из каталога.</p>
+  <ul id="items"></ul>
+  <div class="cart-foot">
+    <div class="sum"><span>Итого</span><b id="total">0,00 €</b></div>
+    <button class="btn full" id="checkout" type="button" data-nosound disabled>Оформить заказ</button>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+<input type="file" id="file" accept="image/*" hidden>
+</body>
+</html>
